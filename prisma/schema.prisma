@@ -19,11 +19,13 @@ model Department {
 model RegisteredStudent {
   id                String   @id
   name              String
-  email             String
+  email             String   @unique
   phone             String
   department        String
   year              String
-  enrollmentNumber  String   @map("enrollmentNumber")
+  enrollmentNumber  String   @unique @map("enrollmentNumber")
+  passwordHash      String?  @map("passwordHash")
+  isActive          Boolean  @default(true) @map("isActive")
   createdAt         DateTime @default(now()) @map("createdAt")
 
   @@map("registered_students")
